@@ -29,6 +29,7 @@ COPY --from=build workspace/dependencies/ ./
 COPY --from=build workspace/spring-boot-loader/ ./
 COPY --from=build workspace/snapshot-dependencies/ ./
 COPY --from=build workspace/application/ ./
+RUN chown -R 1000:1000 /workspace
 USER 1000
 
 ENTRYPOINT ["java","--enable-preview", "org.springframework.boot.loader.JarLauncher"]
